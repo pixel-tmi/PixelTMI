@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pixel TMI 아이콘: 검은 바탕에 픽셀 점 네 개가 일렬로 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#FFFFFF" android:pathData="M27,49.5h9v9h-9z M42,49.5h9v9h-9z M57,49.5h9v9h-9z M72,49.5h9v9h-9z" />
+</vector>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 공모전·Pleos용은 자동차 전용(true), 갤럭시 탭 시연용은 gradlew assembleDebug -Ptablet 으로 false -->
+    <uses-feature android:name="android.hardware.type.automotive" android:required="${automotiveRequired}" />
+
+    <!-- Pleos Vehicle Service 공개 읽기 권한 (protectionLevel="normal") -->
+    <uses-permission android:name="pleos.car.permission.CAR_CLIMATE" />
+    <uses-permission android:name="pleos.car.permission.CAR_DOORS" />
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <uses-permission android:name="pleos.car.permission.CAR_ENERGY" />
+    <uses-permission android:name="pleos.car.permission.CAR_INFO" />
+    <uses-permission android:name="pleos.car.permission.CAR_LIGHTS" />
+    <uses-permission android:name="pleos.car.permission.CAR_MILEAGE" />
+    <uses-permission android:name="pleos.car.permission.CAR_POWERTRAIN" />
+    <uses-permission android:name="pleos.car.permission.CAR_SAFETY" />
+    <uses-permission android:name="pleos.car.permission.CAR_SEATS" />
+    <uses-permission android:name="pleos.car.permission.CAR_SPEED" />
+    <uses-permission android:name="pleos.car.permission.CAR_WINDOWS" />
+    <uses-permission android:name="pleos.car.permission.READ_CAR_STEERING" />
+    <uses-permission android:name="pleos.car.permission.READ_WINDSHIELD_WIPERS" />
+
+    <!-- 차량 속도 (안드로이드 오토모티브 표준 권한, 런타임 허용 필요) -->
+    <uses-permission android:name="android.car.permission.CAR_SPEED" />
+
+    <!-- Pixel TMI: 내비 현재 위치·목적지, 음성 제보 -->
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE_SEARCH" />
+    <uses-permission android:name="pleos.car.permission.STT_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 갤럭시 탭 등 Pleos가 아닌 기기: 차량 속도 대신 GPS 속도 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 바탕화면 펫: 다른 앱 위에 티미 띄우기 (터치는 통과) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 앱 화면을 닫아도 펫이 얼지 않게 상주 (알림 하나) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <!-- 알림창 '끄기 (완전히)' 버튼이 보이려면 (안드로이드 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 탭: 길안내 앱이 맨 앞일 때만 고양이를 지도 위로 (사용 정보 접근, 설정에서 허용) -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+
+    <!-- 제어 권한: 아이디어가 정해지면 필요한 것만 남긴다 -->
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_CLIMATE" />
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_LIGHTS" />
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_SEATS" />
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_WINDOWS" />
+
+    <!-- 탭 길안내 앱 (설치 여부 확인 · 바로 열기) -->
+    <queries>
+        <package android:name="com.nhn.android.nmap" />
+        <package android:name="net.daum.android.map" />
+        <package android:name="com.skt.tmap.ku" />
+        <!-- 기기 기본 음성 인식 찾기 -->
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".App"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.InCarBase">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="Pixel TMI"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.InCarBase">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- 주행 중에도 화면을 유지할 수 있는 앱으로 표시 (AAOS 주의분산 규정) -->
+            <meta-data android:name="distractionOptimized" android:value="true" />
+        </activity>
+        <!-- 갤럭시 탭 'Pleos 전용 앱' (Pleos 메인 화면 그림 안에서만 펫·버튼·TMI) -->
+        <activity
+            android:name=".StageActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.InCarBase" />
+        <!-- 탭 두 번째 아이콘 'Pixel TMI 지도': 길안내 앱 위에서만 고양이 -->
+        <activity
+            android:name=".MapModeActivity"
+            android:exported="true"
+            android:label="Pixel TMI 지도"
+            android:icon="@mipmap/ic_launcher_map"
+            android:excludeFromRecents="true"
+            android:taskAffinity="kr.incar.base.map"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 목적지·펫 이름 입력 창 -->
+        <activity
+            android:name=".InputActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar" />
+        <!-- 길안내 앱(네이버 지도·카카오맵·티맵) 알림에서 목적지·남은 거리 읽기 (알림 접근 허용 필요) -->
+        <!-- 시연 영상 녹화용 명령 (adb 셸만: DUMP 권한) — 화면 전환 없이 상황을 띄운다 -->
+        <receiver
+            android:name=".DebugReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="kr.incar.base.CMD" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".nav.MapAppNotiListener"
+            android:exported="true"
+            android:label="Pixel TMI 길안내 연동"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".pet.PetService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse|microphone">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Desktop pet overlay that keeps announcing road info while the user uses other apps" />
+        </service>
+    </application>
+
+</manifest>
