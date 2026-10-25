@@ -11,6 +11,9 @@
 
 두 파일 모두 바로 설치되도록 release 빌드를 디버그 키로 서명했습니다.
 
+## 시연 영상
+- [`video/Pixel_TMI_시연영상.mp4`](video/Pixel_TMI_시연영상.mp4) — 갤럭시 탭 Pleos 화면 시연 녹화 (약 2분): 출근길 브리핑 → 위험 접근 → 말로 제보 → 위험 컷인 → 도착 세레모니
+
 ## 실행 방법
 ### Pleos Connect 에뮬레이터 (권장)
 1. Android Studio → SDK Manager에 Pleos 이미지 주소를 추가하고 **Pleos Connect v2.1.0 (API 34)** 에뮬레이터를 만듭니다.
