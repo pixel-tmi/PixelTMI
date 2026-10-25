@@ -13,6 +13,7 @@
 
 ## 시연 영상
 - [`video/Pixel_TMI_시연영상.mp4`](video/Pixel_TMI_시연영상.mp4) — 갤럭시 탭 Pleos 화면 시연 녹화 (약 2분): 출근길 브리핑 → 위험 접근 → 말로 제보 → 위험 컷인 → 도착 세레모니
+- [`video/Pixel_TMI_30초.mp4`](video/Pixel_TMI_30초.mp4) — 30초 소개 영상
 
 ## 실행 방법
 ### Pleos Connect 에뮬레이터 (권장)
