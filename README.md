@@ -31,7 +31,7 @@
 말하기 버튼(또는 항상 듣기)을 켜고 "2차로 포트홀", "앞에 사고 났어", "소나기 와요", "공사 중이야" 처럼 말하면 됩니다.
 
 ## 테스트 환경 및 필요한 설정
-- Android Studio (Koala 이상), Gradle 8+, JDK 17, Kotlin, minSdk 28 / targetSdk 34
+- Android Studio (Koala 이상), Gradle 8+, JDK 17, Kotlin, minSdk 28 / targetSdk 35
 - 사용 SDK: Pleos **Vehicle**(차량 상태: 기어·속도·와이퍼·전조등 등), **NaviHelper**(차량 내비 목적지·안내 연동)
 - 준비 중인 SDK(FusedLocation·TextToSpeech·SpeechToText·Vehicle Control)는 기기 기본 위치·음성 인식으로 대신 동작합니다.
 - 날씨: Open-Meteo(기상청 KMA 모델, 키 없음) — 인터넷 연결 필요
@@ -40,10 +40,11 @@
 ## 안전 설계
 - 주행 중에는 글자 입력·상점·대부분의 설정을 막고 **말로만** 조작합니다.
 - 경고는 짧은 울음 + 말풍선 하나로, 펫의 동작·고증 TMI는 **정차(P) 중에만** 나옵니다.
-- 코인은 내 제보를 **다른 차들이 확인했을 때만** 쌓입니다.
+- 제보 코인은 내 제보를 **다른 차들이 확인했을 때만** 쌓입니다. (도착하면 보너스 코인이 조금 붙습니다.)
+- 공유 서버를 붙이기 전인 지금은 다른 차의 제보·확인·공유 숫자를 앱 안의 가상 차량(시뮬레이션)으로 보여 줍니다.
 
 ## 폴더
 - `app/` 안드로이드 앱 소스 (Kotlin) · `app/src/main/assets/pet/` 도트 캐릭터·소품·위험 표시
 - `도구/` 도트 그림·울음소리를 코드로 만드는 스크립트 (Python + Pillow)
 
-데이터 출처: 날씨 Open-Meteo.com (CC BY 4.0) · 글꼴 Galmuri (SIL OFL 1.1)
+데이터 출처: 날씨 Open-Meteo.com (CC BY 4.0, 기상청 KMA 모델) · 글꼴 Galmuri (SIL OFL 1.1) · 아이콘 Pixelarticons (MIT)
