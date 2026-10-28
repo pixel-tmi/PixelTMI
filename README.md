@@ -33,7 +33,7 @@
 ## 테스트 환경 및 필요한 설정
 - Android Studio (Koala 이상), Gradle 8+, JDK 17, Kotlin, minSdk 28 / targetSdk 35
 - 사용 SDK: Pleos **Vehicle**(차량 상태: 기어·속도·와이퍼·전조등 등), **NaviHelper**(차량 내비 목적지·안내 연동)
-- 준비 중인 SDK(FusedLocation·TextToSpeech·SpeechToText·Vehicle Control)는 기기 기본 위치·음성 인식으로 대신 동작합니다.
+- SpeechToText·TextToSpeech·FusedLocation SDK는 10/28 설명회에서 권한 선언만으로 공모전에 열린다고 안내돼 붙이는 중입니다. 지금 버전에서 위치·음성이 안 잡히는 환경은 기기 기본 위치·음성 인식으로 대신 동작합니다.
 - 날씨: Open-Meteo(기상청 KMA 모델, 키 없음) — 인터넷 연결 필요
 - 빌드: `./gradlew :app:assembleRelease` (차량용) · `./gradlew :app:assembleRelease -Ptablet` (태블릿용)
 
